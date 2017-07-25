@@ -100,16 +100,6 @@ input[type="password"] {
     min-height: 568px;
 }
 
-/*.sitebar_wrapper{
-    width: 100%;
-    min-height: 100px;
-    background-color: #fff;
-    overflow: hidden;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border: 1px solid #ccc;
-}*/
-
 .shop_header_list{
     width: 100%;
     text-align: center;
@@ -148,6 +138,7 @@ input[type="password"] {
 
 .shop_list table tbody tr td a{
     color: #fff;
+    text-decoration: none;
 }
 
 .shop_list table tbody tr td a:hover{

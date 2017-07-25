@@ -38,7 +38,6 @@ if (!isset($_SESSION['username'])) {
 			  		<div class="shop_header_list">
 			  			<h3>Shops</h3>
 			  		</div>
-			  		
 			  		<div class="col-sm-3 col-md-4">
 			  			<div class="left_sitebar">
 			  				<ul>
@@ -66,7 +65,7 @@ if (!isset($_SESSION['username'])) {
 			  				  	$per_page = 25;
 								$current_page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 								// pagination 
-								$start_at = $per_page * ($current_page - 1);
+								$start_at =$per_page * ($current_page - 1);
 								$start_at1 = 1 + $per_page * ($current_page - 1);
 								$total_pages = ceil($total_row / $per_page);
 								$total_perpageof= $per_page * $current_page;
@@ -78,13 +77,13 @@ if (!isset($_SESSION['username'])) {
 								$result = $mysqli->query($sql);
 								// var_dump($result);
 			  				  	if( $total_row > 0 ) {
-	               					while( $row = $result->fetch_array( MYSQLI_ASSOC ) ) {   
+	               					while( $row = $result->fetch_array( MYSQLI_ASSOC ) ){   
 			  				  	?>
 			  				  		<!-- start shop view  -->
 									<tr>
 										<td> <?php echo $row["shop"];?> </td>
 										<td>
-											<button type="button" class="btn btn-success"><a class="shopif_shop" target="_blank" href="<?php echo APP_BASE."/admin_login/?shop=".$row["shop"]."?token=".$row["token"];?>">Login as Admin</a></button>
+											<button type="button" class="btn btn-success"><a class="shopif_shop" target="_blank" href="<?php echo APP_BASE."/admin_login/?shop=".$row["shop"]."&token=".$row["token"];?>">Login as Admin</a></button>
 										</td>
 									</tr>
 									<!-- End shop view  -->
@@ -94,7 +93,6 @@ if (!isset($_SESSION['username'])) {
 								?>
 								</tbody>
 								<!--Start Pagination -->
-
 								<div class="pagination">
 									<div class="pagination_totalcal">
 										<p><?php echo $start_at1 ." - ". $total_perpageof; ?> of <?php echo $total_row; ?></p>
@@ -127,27 +125,26 @@ if (!isset($_SESSION['username'])) {
 		</div>
 	</div>
 </section>
-<style type="text/css">
-
-</style>
 <?php footing(); ?>
-
 <?php 
 	function pagination( $current_page ,$total_pages) {
-
 		$next_page = $current_page +1 ;
 		$previous_page = $current_page -1 ;
 
-		if ($current_page == 1 ) {
-
+		if ($total_pages == 1 ) {
 			echo '<a class="pagi_prev disable" href="">&laquo;</a>';
-			echo '<a class="pagi_next" href="http://localhost/panel/shopview/?page='.$next_page.'">&raquo;</a>';
+			echo '<a class="pagi_next disable" href="">&raquo;</a>';
 		}
 
-		else if ($current_page > 1  && $current_page !=  $total_pages) {
-
-			echo '<a class="pagi_prev" href="http://localhost/panel/shopview/?page='.$previous_page.'">&laquo;</a>';
-			echo '<a class="pagi_next" href="http://localhost/panel/shopview/?page='.$next_page.'">&raquo;</a>';
+		else if ($current_page >= 1  && $current_page !=  $total_pages) {
+			if($current_page==1){
+				echo '<a class="pagi_prev disable" href="">&laquo;</a>';
+				echo '<a class="pagi_next" href="http://localhost/panel/shopview/?page='.$next_page.'">&raquo;</a>';
+			}
+			else{
+				echo '<a class="pagi_prev" href="http://localhost/panel/shopview/?page='.$previous_page.'">&laquo;</a>';	
+				echo '<a class="pagi_next" href="http://localhost/panel/shopview/?page='.$next_page.'">&raquo;</a>';
+			}
 		}
 
 		else if ( $current_page ==  $total_pages) {

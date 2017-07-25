@@ -2,13 +2,9 @@
 heading(); 
 session_start();
 form_processor();
-if(isset($_REQUEST['variable']) && $_REQUEST['variable'] !== "") {
-		header("Location:".BASE. '/user' , true);
-}
 if (!isset($_SESSION['username'])) {
     header("Location:".BASE. '/login');
 }
-
 ?>
 
 <section>
@@ -44,39 +40,34 @@ if (!isset($_SESSION['username'])) {
 			  		<div class="shop_header_list">
 			  			<h3>User Panel</h3>
 			  		</div>
-			  		<style type="text/css">
-			  			
-			  		</style>
 			  		<div class="sitebar_wrapper">
 				  		<div class="col-sm-3 col-md-4">
 				  			<div class="left_sitebar">
-				  			
 				  				<ul>
-					  				<li><a href="<?php echo BASE; ?>/shopview"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Shops</a></li>
-					  				<li><a href="<?php echo BASE; ?>/user"><i class="fa fa-angle-double-right" aria-hidden="true"></i> User Panel</a></li>
+					  				<li>
+					  					<a href="<?php echo BASE; ?>/shopview"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Shops
+					  					</a>
+					  				</li>
+					  				<li>
+					  					<a href="<?php echo BASE; ?>/user"><i class="fa fa-angle-double-right" aria-hidden="true"></i> User Panel
+					  					</a>
+					  				</li>
 					  			</ul>
 				  			</div>
 				  		</div>
 
 				  		<div class="col-sm-9 col-md-8">
 					  		<div class="right_sitebar">
-					  			<?php 
-					  				echo "<h3 style='text-align:center;'>". get_flash_message()['message'] ."</h3>";
-					  				
-					  				  
-					  				 //else{
-					  					//echo "<h3 style='color: red;'>". get_flash_message()['message'] ."</h3>";
-					  				// } 
-				  				?>
+					  			 <?php echo get_flash_message()['message']; ?>
 					  			<div class="user_form">
 					  				<form class="form-inline" action="<?php echo BASE ?>/user/?process=users" method="post">
 										<div class="form-group">
 											<label>Username: </label>
-											<input name="username" type="text" class="form-control" placeholder="Username" required>
+											<input name="username" type="text" class="form-control" placeholder="Username" required >
 										</div>
 										<div class="form-group password">
 											<label>Password: </label>
-											<input name="password" type="password" class="form-control" placeholder="Password" required>
+											<input name="password" type="password" class="form-control" placeholder="Password" required >
 										</div>
 										<button type="submit" class="btn btn-default">Submit</button>
 									</form>
@@ -138,14 +129,8 @@ if (!isset($_SESSION['username'])) {
 	</div>
 </section>
 
-
-<style type="text/css">
-
-</style>
 <?php
-
 	footing();
-	
 	/*
 	*Read Json file from location
 	*@return array
@@ -165,20 +150,18 @@ if (!isset($_SESSION['username'])) {
 	function process_users(){
 		$json_array = get_json();
 	 	$new_user = $_REQUEST['username'];
-
 	    //If user dont exists
 	    if(empty($json_array[$new_user])){
 	      // New user added into JSON file
 	      $json_array[$new_user] = md5($_REQUEST['password']);
-
 	     //Save new user
 	      file_put_contents('files/json/users.json', json_encode($json_array));
-	      set_flash_message("Created successfully",1);
+	      set_flash_message('<h3 style="color:green; text-align:center;">Created successfully</h3>',1);
 	      header("Location:".BASE. '/user');
 	    }
 	    //User already exists
 	    else{
-	      set_flash_message("User already exists",0);
+	      set_flash_message('<h3 style="color:#f00; text-align:center;">User already exists</h3>',0);
 	      header("Location:".BASE. '/user');
 	    }
 	}
@@ -186,7 +169,6 @@ if (!isset($_SESSION['username'])) {
 	function process_delete_user () {
 		$json_array = get_json();
 		$new_array;
-
 		$i = 1;
 		foreach ($json_array as $key => $value) {
 			if($i != $_REQUEST['user_id']){
@@ -194,10 +176,7 @@ if (!isset($_SESSION['username'])) {
 			}
 			$i++;
 		}
-
-
 		set_json($new_array);
-
 		header("Location:".BASE. '/user');
 	}
 
