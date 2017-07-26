@@ -85,8 +85,28 @@ if (!isset($_SESSION['username'])) {
 				  				  			$string = file_get_contents("files/json/users.json");
 	    									$json_array = json_decode($string, true);
 
+				  				  			$count = 1;
+				  				  			foreach($json_array as $k=>$v){
+				  				  				$count++;
+				  				  			}
+				  				  			$total_row = $count - 1;
+				  				  			$per_page = 3;
+											$current_page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+											// pagination 
+											$start_at =$per_page * ($current_page - 1);
+											$start_at1 = 1 + $per_page * ($current_page - 1);
+											$total_pages = ceil($total_row / $per_page);
+											$total_perpageof= $per_page * $current_page;
+											if($total_perpageof > $total_row){
+												$total_perpageof = $total_row;
+											}
+
+				  				  			
+
 				  				  			$i = 1;
 				  				  			foreach($json_array as $k=>$v){ 
+				  				  				if (($i > $start_at) && ($i <= ($start_at+$per_page))) {
+				  				  					
 				  				  			?>
 				  				  				<tr>
 				  				  					<td name='id'><?php echo $i ?></td>
@@ -101,11 +121,23 @@ if (!isset($_SESSION['username'])) {
 			  									<?php endif;?>
 		  				  						</tr>
 		  				  						<?php 
+		  				  						}
 		  				  						$i++;
 
 				  				  			}
+				  				  			
 				  				  		?>
 				  				  	</tbody>
+				  				  	<div class="pagination">
+										<div class="pagination_totalcal">
+											<p><?php echo $start_at1 ." - ". $total_perpageof; ?> of <?php echo $total_row; ?></p>
+										</div>
+										<div class="pagination_icon">
+											<?php 
+												pagination($current_page ,$total_pages );
+											 ?>
+										 </div>
+									</div>
 					  			</table>
 					  		</div>
 				  		</div>
@@ -180,5 +212,33 @@ if (!isset($_SESSION['username'])) {
 		header("Location:".BASE. '/user');
 	}
 
+	
+
+	function pagination( $current_page ,$total_pages) {
+		$next_page = $current_page +1 ;
+		$previous_page = $current_page -1 ;
+
+		if ($total_pages == 1 ) {
+			echo '<a class="pagi_prev disable" href="">&laquo;</a>';
+			echo '<a class="pagi_next disable" href="">&raquo;</a>';
+		}
+
+		else if ($current_page >= 1  && $current_page !=  $total_pages) {
+			if($current_page==1){
+				echo '<a class="pagi_prev disable" href="">&laquo;</a>';
+				echo '<a class="pagi_next" href="http://localhost/panel/user/?page='.$next_page.'">&raquo;</a>';
+			}
+			else{
+				echo '<a class="pagi_prev" href="http://localhost/panel/user/?page='.$previous_page.'">&laquo;</a>';	
+				echo '<a class="pagi_next" href="http://localhost/panel/user/?page='.$next_page.'">&raquo;</a>';
+			}
+		}
+
+		else if ( $current_page ==  $total_pages) {
+
+			echo '<a class="pagi_prev" href="http://localhost/panel/user/?page='.$previous_page.'">&laquo;</a>';
+			echo '<a class="pagi_next disable" href="">&raquo;</a>';
+		}
+	}
 	
 ?>
