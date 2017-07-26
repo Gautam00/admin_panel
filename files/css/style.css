@@ -1,10 +1,13 @@
 @import "bourbon";
 
+<<<<<<< HEAD
 .container-fluid{
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
 
+=======
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2
 body{
     width: 100%;
     height: 100%;
@@ -100,6 +103,19 @@ input[type="password"] {
     min-height: 568px;
 }
 
+<<<<<<< HEAD
+=======
+.sitebar_wrapper{
+    width: 100%;
+    min-height: 100px;
+    background-color: #fff;
+    overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2
 .shop_header_list{
     width: 100%;
     text-align: center;
@@ -109,6 +125,7 @@ input[type="password"] {
     width: 100%;
     background-color: #fff;
     color: #000;
+<<<<<<< HEAD
     border: 1px solid #ccc;
     margin-bottom: 30px;
 }
@@ -134,11 +151,24 @@ input[type="password"] {
 
 .shop_list .btn{
     float: right !important;
+=======
+}
+
+.shop_list table tr th{
+    padding-left: 20px;  
+}
+
+.shop_list table tr td{
+    padding-left: 20px;  
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2
 }
 
 .shop_list table tbody tr td a{
     color: #fff;
+<<<<<<< HEAD
     text-decoration: none;
+=======
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2
 }
 
 .shop_list table tbody tr td a:hover{
@@ -224,6 +254,7 @@ input[type="password"] {
 .disable:hover{
     cursor: not-allowed;
     background-color: #d2d0d0;
+<<<<<<< HEAD
 }
 .left_sitebar{
     width: 100%;
@@ -305,3 +336,6 @@ input[type="password"] {
     padding-right: 35px;  
     padding-left: 35px;  
 }
+=======
+}
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2

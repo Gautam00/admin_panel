@@ -40,4 +40,8 @@ Deny from .zoominfo.com
 RewriteEngine on 
 RewriteCond %{REQUEST_FILENAME} !^http://(www\.)?localhost [NC] 
 RewriteCond %{REQUEST_FILENAME} !^http://(www\.)?localhost.*$ [NC] 
+<<<<<<< HEAD
 RewriteRule \.(json)$ - [F]
+=======
+RewriteRule \.(json)$ - [F]
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2

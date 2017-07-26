@@ -36,7 +36,13 @@ function get_flash_message()
 function logged_in()
 {
     if( isset( $_SESSION['shop'] ) ) {
+<<<<<<< HEAD
 		return true;
+=======
+		
+		return true;
+		
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2
 	} else return false;
 }
 
@@ -73,6 +79,10 @@ function form_processor()
 //following function creates a pagination
 function paginate($total, $current_page, $total_every_page, $url)
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2
     $total_pages=$total/$total_every_page;
     if($total_page>round($total_page)) $total_pages=round($total_pages)+1;
 
@@ -80,7 +90,12 @@ function paginate($total, $current_page, $total_every_page, $url)
     if($current_page<($total_pages)) echo "<a href='".$url."/page/".($current_page+1)."'><input type='submit' value='Next>>>'></a>";
 }
 
+<<<<<<< HEAD
 function upload_an_image($max_size, $prefix, $valid_exts) {      
+=======
+function upload_an_image($max_size, $prefix, $valid_exts) {        
+    
+>>>>>>> e3461aacae373dcb6d010aba902ca7581da7d8f2
     $path = FILEUPLOAD; // upload directory
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
